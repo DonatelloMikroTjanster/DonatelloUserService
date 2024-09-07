@@ -3,32 +3,25 @@ package com.nadia.donatellouserservice.Entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_profiles")
-public class UserProfile {
+@Table(name = "ratings")
+public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "preferences", length = 300)
-    private String preferences;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "media_id", nullable = false)
+    private Media media;
 
-
-    //Empty constructor
-    public UserProfile() {
-    }
-
-    public UserProfile(User user, String preferences) {
-        this.user = user;
-        this.preferences = preferences;
-    }
-
+    private String rating; //UP/DOWN
 
     //Getters & setters
+
 
     public Long getId() {
         return id;
@@ -46,11 +39,19 @@ public class UserProfile {
         this.user = user;
     }
 
-    public String getPreferences() {
-        return preferences;
+    public Media getMedia() {
+        return media;
     }
 
-    public void setPreferences(String preferences) {
-        this.preferences = preferences;
+    public void setMedia(Media media) {
+        this.media = media;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 }

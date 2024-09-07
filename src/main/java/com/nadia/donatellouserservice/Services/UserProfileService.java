@@ -17,7 +17,7 @@ public class UserProfileService {
         return userProfileRepository.save(userProfile);
     }
 
-    public Optional<UserProfile> getUserProfile(Long id) {
+    public Optional<UserProfile> getUserProfileById(Long id) {
         return userProfileRepository.findById(id);
     }
 }

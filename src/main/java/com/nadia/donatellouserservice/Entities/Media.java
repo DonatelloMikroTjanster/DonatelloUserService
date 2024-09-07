@@ -5,27 +5,22 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "media")
+public class Media {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String username;
+    private String title;
+    private String mediacategory; //enum klass
 
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserProfile userProfile;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
     private List<PlaybackHistory> playbackHistories;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
     private List<Rating> ratings;
+
 
     //Getters & setters
 
@@ -37,28 +32,20 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMediacategory() {
+        return mediacategory;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public UserProfile getUserProfile() {
-        return userProfile;
-    }
-
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
+    public void setMediacategory(String mediaType) {
+        this.mediacategory = mediaType;
     }
 
     public List<PlaybackHistory> getPlaybackHistories() {
@@ -77,7 +64,3 @@ public class User {
         this.ratings = ratings;
     }
 }
-
-
-
-
