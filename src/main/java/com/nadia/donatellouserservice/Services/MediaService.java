@@ -21,14 +21,14 @@ public class MediaService {
         return mediaRepository.findById(id).orElse(null);
     }
 
-    public Media createMedia(Media media) {
+   /* public Media createMedia(Media media) {
         return mediaRepository.save(media);
     }
 
     public Media updateMedia(Long id, Media updatedMedia) {
         return mediaRepository.findById(id).map(media -> {
             media.setTitle(updatedMedia.getTitle());
-            media.setMediacategory(updatedMedia.getMediacategory());
+            media.setMediaType(updatedMedia.getMediaType());
             return mediaRepository.save(media);
         }).orElse(null);
     }
@@ -37,10 +37,7 @@ public class MediaService {
         mediaRepository.deleteById(id);
     }
 
-
-
-
-
+    */
 
 
 }

@@ -18,9 +18,6 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserProfile userProfile;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<PlaybackHistory> playbackHistories;
 
@@ -53,13 +50,6 @@ public class User {
         this.email = email;
     }
 
-    public UserProfile getUserProfile() {
-        return userProfile;
-    }
-
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
-    }
 
     public List<PlaybackHistory> getPlaybackHistories() {
         return playbackHistories;

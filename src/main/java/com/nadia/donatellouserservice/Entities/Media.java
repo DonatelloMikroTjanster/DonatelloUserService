@@ -13,7 +13,7 @@ public class Media {
     private Long id;
 
     private String title;
-    private String mediacategory; //enum klass
+    private String mediaCategory;
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
     private List<PlaybackHistory> playbackHistories;
@@ -40,12 +40,12 @@ public class Media {
         this.title = title;
     }
 
-    public String getMediacategory() {
-        return mediacategory;
+    public String getMediaCategory() {
+        return mediaCategory;
     }
 
-    public void setMediacategory(String mediaType) {
-        this.mediacategory = mediaType;
+    public void setMediaCategory(String mediaType) {
+        this.mediaCategory = mediaType;
     }
 
     public List<PlaybackHistory> getPlaybackHistories() {
