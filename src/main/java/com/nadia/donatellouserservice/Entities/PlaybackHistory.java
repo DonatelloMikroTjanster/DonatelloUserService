@@ -11,6 +11,7 @@ public class PlaybackHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -21,7 +22,7 @@ public class PlaybackHistory {
     @JoinColumn(name = "media_id", nullable = false)
     private Media media;
 
-    @Column(nullable = false)
+    @Column(name = "timestamp", nullable = false)
     private Date timestamp;
 
 

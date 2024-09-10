@@ -10,9 +10,13 @@ public class Media {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "title", nullable = false, length = 200)
     private String title;
+
+    @Column(name = "media_category", nullable = false, length = 150)
     private String mediaCategory;
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)

@@ -3,7 +3,7 @@ VALUES
     (1, 'anna_svensson', 'anna@example.com'),
     (2, 'erik_larsson', 'erik@example.com');
 
-INSERT INTO media (id, title, mediaCategory)
+INSERT INTO media (id, title, media_category)
 VALUES
     (1, 'Come Together', 'MUSIC'),
     (2, 'Billie Jean', 'MUSIC'),

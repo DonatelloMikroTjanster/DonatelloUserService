@@ -8,6 +8,7 @@ public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -18,7 +19,9 @@ public class Rating {
     @JoinColumn(name = "media_id", nullable = false)
     private Media media;
 
+    @Column (name = "rating")
     private String rating; //UP/DOWN
+
 
     //Getters & setters
 
