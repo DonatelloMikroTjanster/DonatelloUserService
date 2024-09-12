@@ -30,4 +30,32 @@ public class UserController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
     }
+
+    // Hämta alla användare
+    @GetMapping("/allusers")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    // Uppdatera användare
+    @PutMapping("/updateuser/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User userDetails) {
+        return userService.updateUser(id, userDetails)
+                .map(updatedUser -> new ResponseEntity<>(updatedUser, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/deleteuser/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable long id) {
+        boolean isDeleted = userService.deleteUser(id);
+        if (isDeleted) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
