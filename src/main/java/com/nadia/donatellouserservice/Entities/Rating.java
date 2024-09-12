@@ -1,5 +1,6 @@
 package com.nadia.donatellouserservice.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,10 +14,12 @@ public class Rating {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "media_id", nullable = false)
+    @JsonIgnore
     private Media media;
 
     @Column (name = "rating")
