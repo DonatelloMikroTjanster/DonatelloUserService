@@ -30,7 +30,6 @@ public class UserService {
         return userRepository.findById(id).map(existingUser -> {
             existingUser.setUsername(userDetails.getUsername());
             existingUser.setEmail(userDetails.getEmail());
-            // Lägg till eventuella andra fält som ska uppdateras
             return userRepository.save(existingUser);
         });
     }
