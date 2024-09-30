@@ -25,12 +25,17 @@ public class PlaybackHistory {
     @JsonIgnore
     private Media media;
 
+    @Column(name = "played_at", nullable = false)
+    private LocalDateTime playedAt;
+
+    @Column(name = "progress", nullable = false)
+    private Long progress;
+
     @Column(name = "timestamp", nullable = false)
     private Date timestamp;
 
 
-    //Getters & setters
-
+    public PlaybackHistory() {}
 
     public Long getId() {
         return id;
@@ -54,6 +59,22 @@ public class PlaybackHistory {
 
     public void setMedia(Media media) {
         this.media = media;
+    }
+
+    public LocalDateTime getPlayedAt() {
+        return playedAt;
+    }
+
+    public void setPlayedAt(LocalDateTime playedAt) {
+        this.playedAt = playedAt;
+    }
+
+    public Long getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Long progress) {
+        this.progress = progress;
     }
 
     public Date getTimestamp() {
