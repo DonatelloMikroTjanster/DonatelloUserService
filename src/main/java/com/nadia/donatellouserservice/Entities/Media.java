@@ -13,10 +13,13 @@ public class Media {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", nullable = false, length = 200)
+    @Column(name = "title", nullable = false, length = 100)
     private String title;
 
-    @Column(name = "media_category", nullable = false, length = 150)
+    @Column(name = "genre", nullable = false, length = 100)
+    private String genre;
+
+    @Column(name = "media_category", nullable = false, length = 100)
     private String mediaCategory;
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
