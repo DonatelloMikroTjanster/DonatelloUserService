@@ -16,7 +16,7 @@ public class Media {
     @Column(name = "title", nullable = false, length = 100)
     private String title;
 
-    @Column(name = "media_type", nullable = false, length = 100)
+    @Column(name = "media_category", nullable = false, length = 100)
     private String mediaCategory;
 
     @Column(name = "genre", nullable = false, length = 100)
