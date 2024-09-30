@@ -2,6 +2,7 @@ package com.nadia.donatellouserservice.Entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -10,17 +11,26 @@ public class Media {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;
 
+    @Column(name = "media_type", nullable = false, length = 100)
+    private String mediaCategory;
+
     @Column(name = "genre", nullable = false, length = 100)
     private String genre;
 
-    @Column(name = "media_category", nullable = false, length = 100)
-    private String mediaCategory;
+    @Column(name = "release_date", nullable = false, length = 100)
+    private LocalDate releaseDate;
+
+    @Column(name = "url", nullable = false, length = 100)
+    private String url;
+
+    @Column(name = "duration", nullable = false, length = 100)
+    private String duration;
+
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
     private List<PlaybackHistory> playbackHistories;
@@ -29,7 +39,10 @@ public class Media {
     private List<Rating> ratings;
 
 
-    //Getters & setters
+    public Media() {
+
+    }
+
 
     public Long getId() {
         return id;
@@ -51,8 +64,40 @@ public class Media {
         return mediaCategory;
     }
 
-    public void setMediaCategory(String mediaType) {
-        this.mediaCategory = mediaType;
+    public void setMediaCategory(String mediaCategory) {
+        this.mediaCategory = mediaCategory;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public List<PlaybackHistory> getPlaybackHistories() {
