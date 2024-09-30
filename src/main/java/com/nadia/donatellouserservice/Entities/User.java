@@ -10,13 +10,12 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
     private Long id;
 
     @Column(name = "username", nullable = false, length = 100)
     private String username;
 
-    @Column(name = "email", nullable = false, unique = true, length = 200)
+    @Column(name = "email", nullable = false, length = 100)
     private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -24,6 +23,10 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Rating> ratings;
+
+
+    public User() {
+    }
 
     //Getters & setters
 
@@ -67,6 +70,8 @@ public class User {
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
+
+
 }
 
 
