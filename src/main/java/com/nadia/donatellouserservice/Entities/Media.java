@@ -3,7 +3,9 @@ package com.nadia.donatellouserservice.Entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "media")
@@ -16,8 +18,8 @@ public class Media {
     @Column(name = "title", nullable = false, length = 100)
     private String title;
 
-    @Column(name = "media_category", nullable = false, length = 100)
-    private String mediaCategory;
+    @Column(name = "media_type", nullable = false, length = 100)
+    private String mediaType;
 
     @Column(name = "genre", nullable = false, length = 100)
     private String genre;
@@ -33,16 +35,16 @@ public class Media {
 
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
-    private List<PlaybackHistory> playbackHistories;
+    private Set<PlayBackHistory> playbackHistories =new HashSet<>();
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
-    private List<Rating> ratings;
+    private Set<Rating> ratings = new HashSet<>();
+
 
 
     public Media() {
 
     }
-
 
     public Long getId() {
         return id;
@@ -60,12 +62,12 @@ public class Media {
         this.title = title;
     }
 
-    public String getMediaCategory() {
-        return mediaCategory;
+    public String getMediaType() {
+        return mediaType;
     }
 
-    public void setMediaCategory(String mediaCategory) {
-        this.mediaCategory = mediaCategory;
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
     public String getGenre() {
@@ -100,19 +102,19 @@ public class Media {
         this.duration = duration;
     }
 
-    public List<PlaybackHistory> getPlaybackHistories() {
+    public Set<PlayBackHistory> getPlaybackHistories() {
         return playbackHistories;
     }
 
-    public void setPlaybackHistories(List<PlaybackHistory> playbackHistories) {
+    public void setPlaybackHistories(Set<PlayBackHistory> playbackHistories) {
         this.playbackHistories = playbackHistories;
     }
 
-    public List<Rating> getRatings() {
+    public Set<Rating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(List<Rating> ratings) {
+    public void setRatings(Set<Rating> ratings) {
         this.ratings = ratings;
     }
 }
