@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "playback_history")
-public class PlayBackHistory {
+public class PlaybackHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,20 +15,20 @@ public class PlayBackHistory {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "media_id", nullable = false)
+    @JoinColumn(name = "media_id")
     @JsonIgnore
     private Media media;
 
-    @Column(name = "played_at", nullable = false)
+    @Column(name = "played_at")
     private LocalDateTime playedAt;
 
 
-    public PlayBackHistory() {}
+    public PlaybackHistory() {}
 
     public Long getId() {
         return id;

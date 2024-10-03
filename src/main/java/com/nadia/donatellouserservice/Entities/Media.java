@@ -1,5 +1,7 @@
 package com.nadia.donatellouserservice.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -15,32 +17,38 @@ public class Media {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title", nullable = false, length = 100)
+    @Column(name = "title", length = 100)
     private String title;
 
-    @Column(name = "media_type", nullable = false, length = 100)
+    @Column(name = "media_type", length = 100)
     private String mediaType;
 
-    @Column(name = "genre", nullable = false, length = 100)
-    private String genre;
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 
-    @Column(name = "release_date", nullable = false, length = 100)
+    @Column(name = "release_date",length = 100)
     private LocalDate releaseDate;
 
-    @Column(name = "url", nullable = false, length = 100)
+    @Column(name = "url",length = 100)
     private String url;
 
-    @Column(name = "duration", nullable = false, length = 100)
+    @Column(name = "duration",length = 100)
     private String duration;
 
+    @ManyToOne (optional = true)
+    @JoinColumn(name = "user_id", nullable = true)
+    @JsonBackReference
+    @JsonIgnore
+    private User user;
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
-    private Set<PlayBackHistory> playbackHistories =new HashSet<>();
+    @JsonIgnore
+    private Set<PlaybackHistory> playBackHistories = new HashSet<>();
 
     @OneToMany(mappedBy = "media", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Rating> ratings = new HashSet<>();
-
-
 
     public Media() {
 
@@ -70,11 +78,11 @@ public class Media {
         this.mediaType = mediaType;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
@@ -102,12 +110,20 @@ public class Media {
         this.duration = duration;
     }
 
-    public Set<PlayBackHistory> getPlaybackHistories() {
-        return playbackHistories;
+    public User getUser() {
+        return user;
     }
 
-    public void setPlaybackHistories(Set<PlayBackHistory> playbackHistories) {
-        this.playbackHistories = playbackHistories;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<PlaybackHistory> getPlayBackHistories() {
+        return playBackHistories;
+    }
+
+    public void setPlayBackHistories(Set<PlaybackHistory> playBackHistories) {
+        this.playBackHistories = playBackHistories;
     }
 
     public Set<Rating> getRatings() {
