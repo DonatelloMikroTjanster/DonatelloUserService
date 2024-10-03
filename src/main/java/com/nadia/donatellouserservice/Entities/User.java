@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,7 +25,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<PlayBackHistory> playbackHistories = new HashSet<>();
+    private Set<PlaybackHistory> playbackHistories = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Rating> ratings = new HashSet<>();
@@ -62,11 +61,11 @@ public class User {
     }
 
 
-    public Set<PlayBackHistory> getPlaybackHistories() {
+    public Set<PlaybackHistory> getPlaybackHistories() {
         return playbackHistories;
     }
 
-    public void setPlaybackHistories(Set<PlayBackHistory> playbackHistories) {
+    public void setPlaybackHistories(Set<PlaybackHistory> playbackHistories) {
         this.playbackHistories = playbackHistories;
     }
 

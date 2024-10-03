@@ -15,7 +15,7 @@ VALUES
     (4, 'Billie Jean', 'Song', 'Pop', '1982-11-30', 'http://example.com/billie-jean', '4:54');
 
 
--- Insert PlayBackHistory
+-- Insert PlaybackHistory
 
 INSERT INTO playback_history (id, user_id, media_id, played_at)
 VALUES
