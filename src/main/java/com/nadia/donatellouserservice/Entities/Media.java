@@ -37,7 +37,7 @@ public class Media {
     private String duration;
 
     @ManyToOne (optional = true)
-    @JoinColumn(name = "user_id", nullable = true)
+    @JoinColumn(name = "user_id", nullable =true)
     @JsonBackReference
     @JsonIgnore
     private User user;
