@@ -36,8 +36,8 @@ public class Media {
     @Column(name = "duration",length = 100)
     private String duration;
 
-    @ManyToOne (optional = true)
-    @JoinColumn(name = "user_id", nullable =true)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     @JsonBackReference
     @JsonIgnore
     private User user;
