@@ -38,7 +38,6 @@ public class Media {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @JsonBackReference
     @JsonIgnore
     private User user;
 
