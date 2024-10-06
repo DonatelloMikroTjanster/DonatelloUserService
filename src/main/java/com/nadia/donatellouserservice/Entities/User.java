@@ -2,28 +2,37 @@ package com.nadia.donatellouserservice.Entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
     private Long id;
 
-    @Column(name = "username", nullable = false, length = 100)
+    @Column(name = "user_name", nullable = false, length = 100)
     private String username;
 
-    @Column(name = "email", nullable = false, unique = true, length = 200)
+    @Column(name = "email", nullable = false, length = 100)
     private String email;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<PlaybackHistory> playbackHistories;
+    @Column(name = "created_at", nullable = false, length = 100)
+    private LocalDateTime createdAt;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Rating> ratings;
+    private Set<PlaybackHistory> playbackHistories = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Rating> ratings = new HashSet<>();
+
+
+    public User() {
+    }
 
     //Getters & setters
 
@@ -52,21 +61,31 @@ public class User {
     }
 
 
-    public List<PlaybackHistory> getPlaybackHistories() {
+    public Set<PlaybackHistory> getPlaybackHistories() {
         return playbackHistories;
     }
 
-    public void setPlaybackHistories(List<PlaybackHistory> playbackHistories) {
+    public void setPlaybackHistories(Set<PlaybackHistory> playbackHistories) {
         this.playbackHistories = playbackHistories;
     }
 
-    public List<Rating> getRatings() {
+    public Set<Rating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(List<Rating> ratings) {
+    public void setRatings(Set<Rating> ratings) {
         this.ratings = ratings;
     }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
 }
 
 

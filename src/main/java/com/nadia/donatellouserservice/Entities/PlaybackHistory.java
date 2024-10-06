@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "playback_history")
@@ -16,21 +15,20 @@ public class PlaybackHistory {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "media_id", nullable = false)
+    @JoinColumn(name = "media_id")
     @JsonIgnore
     private Media media;
 
-    @Column(name = "timestamp", nullable = false)
-    private Date timestamp;
+    @Column(name = "played_at")
+    private LocalDateTime playedAt;
 
 
-    //Getters & setters
-
+    public PlaybackHistory() {}
 
     public Long getId() {
         return id;
@@ -56,11 +54,11 @@ public class PlaybackHistory {
         this.media = media;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public LocalDateTime getPlayedAt() {
+        return playedAt;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setPlayedAt(LocalDateTime playedAt) {
+        this.playedAt = playedAt;
     }
 }
